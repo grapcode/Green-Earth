@@ -32,8 +32,8 @@
         <nav class="bg-green-700 py-5">
             <div
                 class="max-w-7xl mx-auto px-3 flex flex-col md:flex-row space-y-3 md:space-y-0 justify-between items-center">
-                <div class="logo text-xl font-semibold">
-                    <img src="" alt="">
+                <div class="logo text-xl font-semibold flex justify-center items-center pl-4">
+                    <img class="w-10 mr-3" src="./assets/logo.png" alt="">
                     <h3 class="text-white">Green Earth</h3>
                 </div>
                 <div class="">
@@ -66,12 +66,12 @@
     <main class="bg-green-50 pt-10 ">
         <!--📍 Choose section  -->
         <h2 class="text-3xl font-bold py-4 text-center">Choose Your Trees</h2>
-        <section class="grid grid-cols-5 max-w-7xl  mx-auto px-3 border justify-items-center gap-2">
+        <section class="grid md:grid-cols-5 max-w-7xl  mx-auto px-3 border justify-items-center gap-2">
             <!--✨ left sidebar  -->
             <div class="bg-gray-200 w-56 h-56"></div>
 
             <!--✨ middle side  -->
-            <div class="col-span-3 grid grid-cols-3 gap-5 ">
+            <div class=" md:col-span-3 grid md:grid-cols-3 gap-5 ">
                 <div class="bg-gray-200 w-56 h-56"></div>
                 <div class="bg-gray-200 w-56 h-56"></div>
                 <div class="bg-gray-200 w-56 h-56"></div>
@@ -84,7 +84,7 @@
         <!--📍 about section  -->
         <section class="max-w-5xl mx-auto px-3 py-15">
             <h2 class="text-3xl font-bold py-5 text-center">About the Campaign</h2>
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col md:flex-row gap-5 justify-between items-center">
                 <img class="shadow-lg" src="./assets/about.png" alt="">
                 <div class="ml-10">
                     <p class="mb-5">Green Earth is a global tree plantation initiative dedicated to fighting climate
@@ -100,11 +100,11 @@
         </section>
 
         <!--📍 our impact section  -->
-        <section class="bg-[#cff0dc] pb-10">
+        <section class="bg-[#cff0dc] ">
             <div class="max-w-7xl mx-auto px-3 py-10 ">
                 <h2 class="text-3xl font-bold py-5 text-center">Our Impact</h2>
                 <!-- card 3  -->
-                <div class="flex justify-between items-center gap-10">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-10">
                     <div class="bg-white w-full p-6 text-center rounded-lg shadow-md hover:bg-[#f0fdf4]">
                         <h5 class="text-3xl font-semibold text-green-700 mb-3">500K+</h5>
                         <p>Trees Planted</p>
@@ -123,13 +123,13 @@
     </main>
     <!-- footer section  -->
     <footer>
-        <!--📍 plant tree  -->
+        <!--📍 footer plant tree  -->
         <section class="bg-[#166534]">
             <div class="max-w-7xl mx-auto px-3 py-10 ">
                 <h2 class="text-3xl font-bold py-5 text-center text-white">Plant a Tree Today</h2>
                 <!-- card 3  -->
                 <form class="flex justify-center items-center">
-                    <fieldset class="fieldset bg-[#15803d] rounded-box w-2/5 p-6 space-y-3">
+                    <fieldset class="fieldset bg-[#15803d] rounded-box md:w-2/6 p-6 space-y-3">
                         <input type="text" class="input w-full" placeholder="Your Name" />
                         <input type="text" class="input w-full" placeholder="Your Email Address" />
                         <select class="select w-full">
@@ -146,9 +146,9 @@
             </div>
         </section>
 
-        <!-- footer rights  -->
+        <!-- footer copyright  -->
         <div class="bg-[#14532d]">
-            <p class="text-sm py-5 text-center text-white">© 2025 Green Earth. All Rights Reserved.</p>
+            <p class="text-sm py-5 text-center text-white">&copy; 2025 Green Earth. All Rights Reserved.</p>
         </div>
     </footer>
     <script src="./script.js"></script>
