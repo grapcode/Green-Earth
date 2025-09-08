@@ -51,15 +51,18 @@
         <!--📍 banner section  -->
         <section class="banner bg-[#cff0dc] ">
             <div class="px-3 flex flex-col lg:flex-row justify-between items-center">
-                <img class="mb-5 lg:mb-0" src="./assets/hero-leaf1.png" alt="">
-                <div class="banner-container space-y-4 text-center mx-auto ">
-                    <h1 class="text-5xl font-bold">Plant a Tree, Grow a Future</h1>
+                <img class="mb-5 lg:mb-0 hidden lg:block" src="./assets/hero-leaf1.png" alt="">
+                <div class="banner-container space-y-4 text-center mx-auto  ">
+                    <h1 class="text-5xl font-bold mt-10 lg:mt-0">Plant a Tree, Grow a Future</h1>
                     <p>Join our mission to plant 1 million trees and make the Earth greener for future
                         generations.</p>
                     <button class="p-2 px-5 rounded-full bg-[#facc15] text-green-700 font-medium cursor-pointer">Get
                         Involved</button>
                 </div>
-                <img class="w-f" src="./assets/hero-leaf2.png" alt="">
+                <div class="flex">
+                    <img class="h-36 md:h-60 object-contain block lg:hidden" src="./assets/hero-leaf1.png" alt="">
+                    <img class="h-36 md:h-60 lg:h-auto object-contain" src="./assets/hero-leaf2.png" alt="">
+                </div>
             </div>
         </section>
     </header>
@@ -67,11 +70,13 @@
         <!--📍 Choose section  -->
         <h2 class="text-3xl font-bold py-4 text-center">Choose Your Trees</h2>
         <section class="grid md:grid-cols-7 max-w-7xl  mx-auto px-3 border  justify-between gap-2 items-stretch">
+
             <!--✨ left sidebar  -->
             <div id="leftCategories" class="">
                 <h4 class="text-xl font-semibold mb-3">Categories</h4>
-                <div class="hover:bg-green-200 p-2 rounded-md my-2 cursor-pointer list-none">All Trees
-                </div>
+                <li class="hover:bg-green-200 text-white p-2 rounded-md my-2 cursor-pointer list-none bg-green-600">All
+                    Trees
+                </li>
                 <!-- Dummy categories  -->
                 <!-- <ul>
                     <li class="hover:bg-green-200">All Trees</li>
@@ -109,6 +114,22 @@
                 <h4 class="text-xl font-semibold mb-3">Your Cart</h4>
             </div>
         </section>
+
+        <!--📍plants modal  -->
+        <!-- Open the modal using ID.showModal() method -->
+
+        <dialog id="plants-modal" class="modal">
+            <div class="modal-box">
+                <div id="modal-container"></div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+
 
         <!--📍 about section  -->
         <section class="max-w-5xl mx-auto px-3 py-15">

@@ -7,6 +7,10 @@ const allPlants = document.getElementById('allPlants');
 //🌳 middle Plant
 const middlePlants = document.getElementById('middlePlants');
 
+//🍁 plants modal
+const plantsModal = document.getElementById('plants-modal');
+const modalContainer = document.getElementById('modal-container');
+
 //✨ left category
 const loadCategory = () => {
   fetch('https://openapi.programming-hero.com/api/categories')
@@ -25,7 +29,7 @@ const showCategory = (allCategories) => {
   allCategories.forEach((cat) => {
     // console.log(cat);
     leftCategories.innerHTML += `
-        <li id="${cat.id}" class="hover:bg-green-200 p-2 rounded-md my-2 cursor-pointer list-none">${cat.category_name}</li>
+        <li id="${cat.id}" class="hover:bg-green-200  p-2 rounded-md my-2 cursor-pointer list-none">${cat.category_name}</li>
     `;
   });
 };
@@ -35,12 +39,17 @@ leftCategories.addEventListener('click', (e) => {
   const allLi = document.querySelectorAll('li');
   //  remove
   allLi.forEach((li) => {
-    li.classList.remove('bg-green-600');
+    li.classList.remove('bg-green-600', 'text-white');
   });
   //  add
   if (e.target.localName === 'li') {
-    e.target.classList.add('bg-green-600');
+    e.target.classList.add('bg-green-600', 'text-white');
     loadPlantsByCategories(e.target.id);
+  }
+  console.log(e.target.parentNode.parentNode.children[1]);
+  // 🍁 modal call
+  if (e.target.innerText === 'id') {
+    handlePlantsModal(e);
   }
 });
 
@@ -49,7 +58,6 @@ const loadPlantsByCategories = (id) => {
   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      //   console.log(data.plants);
       showPlantsByCategories(data.plants);
     })
     .catch((err) => {
@@ -61,11 +69,11 @@ const loadPlantsByCategories = (id) => {
 const showPlantsByCategories = (plants) => {
   middlePlants.innerHTML = '';
   plants.forEach((plant) => {
-    console.log(plant);
+    // console.log(plant);
     middlePlants.innerHTML += `
-        <div class=" bg-white p-3 max-h-fit ">
-            <img class="bg-gray-200 rounded-lg w-full h-2/5 object-cover" src="${plant.image}" alt="">
-            <h4 class="text-xl font-semibold mb-3">${plant.name}</h4>
+        <div id="${plant.id}" class=" bg-white p-3 max-h-fit shadow-lg rounded-xl">
+            <img class="bg-gray-200 rounded-lg w-full h-52 object-cover" src="${plant.image}" alt="">
+            <h4 onclick="handlePlantsModal(event)" class="text-xl font-semibold my-3">${plant.name}</h4>
             <p>${plant.description}</p>
             <div class="flex justify-between items-center my-3">
                 <button
@@ -77,6 +85,7 @@ const showPlantsByCategories = (plants) => {
         </div>
     `;
   });
+  // handlePlantsModal(e);
 };
 
 //💥 all trees
@@ -97,9 +106,9 @@ const loadPlants = () => {
 const showPlants = (plantsData) => {
   plantsData.forEach((plan) => {
     allPlants.innerHTML += `
-        <div class=" bg-white p-3 max-h-fit ">
-            <img class="bg-gray-200 rounded-lg w-full h-2/5 object-cover" src="${plan.image}" alt="">
-            <h4 class="text-xl font-semibold mb-3">${plan.name}</h4>
+        <div class=" bg-white p-3 max-h-fit shadow-lg rounded-xl">
+            <img class="bg-gray-200 rounded-lg w-full h-52 object-cover" src="${plan.image}" alt="">
+            <h4 class="text-xl font-semibold my-3">${plan.name}</h4>
             <p>${plan.description}</p>
             <div class="flex justify-between items-center my-3">
                 <button
@@ -113,5 +122,36 @@ const showPlants = (plantsData) => {
   });
 };
 
+//🍁 plants modal
+
+const handlePlantsModal = (e) => {
+  const id = e.target.parentNode.id;
+  // console.log(id);
+
+  fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.plants);
+      showDetailsNews(data.plants);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Modal এ plants details দেখানো
+const showDetailsNews = (plants) => {
+  console.log(plants);
+  plantsModal.showModal();
+  modalContainer.innerHTML = `
+    <h1 class="text-xl font-semibold mb-3">${plants.name}</h1>
+    <img class="rounded-lg w-full h-80 object-cover" src="${plants.image}" />
+    <p><span class="text-lg font-semibold">Category:</span> ${plants.category}</p>
+    <p><span class="text-lg font-semibold">Price: ৳</span>${plants.price}</p>
+    <p><span class="text-lg font-semibold">Description:</span> ${plants.description}</p>
+  `;
+};
+
+// handlePlantsModal();
 loadPlants();
 loadCategory();
