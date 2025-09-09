@@ -17,6 +17,7 @@ let cardAdd = [];
 
 //🧩 total tk
 const totalTk = document.getElementById('total-tk');
+let total = 0;
 
 //✨ left category
 const loadCategory = () => {
@@ -172,19 +173,22 @@ const handleCard = (e) => {
   const title = e.target.parentNode.children[1].innerText;
   const price = e.target.parentNode.children[3].children[1].innerText;
   const id = e.target.parentNode.id;
-  console.log(price);
   cardAdd.push({
     title: title,
     price: price,
     id: id,
   });
-  // console.log(cardAdd);
+
+  // 🎯 get total price
+  let amount = parseFloat(price.replace('৳', '').trim());
+  total += amount;
+  // console.log('Total', total);
   showCard(cardAdd);
 };
 
 //🧩 right cards show
 const showCard = (cardAdd) => {
-  console.log(cardAdd);
+  // console.log(cardAdd);
   cardContainer.innerHTML = '';
   cardAdd.forEach((card) => {
     cardContainer.innerHTML += `
@@ -199,14 +203,21 @@ const showCard = (cardAdd) => {
         </div>
     `;
   });
+
+  // 🎯 show total price
+  totalTk.innerText = total;
 };
 
 //🧩 right cards function for remove card
 const handleRemoveCard = (cardId) => {
-  const filteredCard = cardAdd.filter((card) => card.id !== cardId);
-  console.log(cardId);
-  console.log(filteredCard);
-  cardAdd = filteredCard;
+  const removeCard = cardAdd.find((card) => card.id === cardId);
+  if (removeCard) {
+    let amount = parseFloat(removeCard.price.replace('৳', '').trim());
+    total -= amount;
+  }
+
+  cardAdd = cardAdd.filter((card) => card.id !== cardId);
+
   // last call
   showCard(cardAdd);
 };
