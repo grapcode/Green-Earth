@@ -11,6 +11,13 @@ const middlePlants = document.getElementById('middlePlants');
 const plantsModal = document.getElementById('plants-modal');
 const modalContainer = document.getElementById('modal-container');
 
+//🧩 right cards
+const cardContainer = document.getElementById('card-container');
+let cardAdd = [];
+
+//🧩 total tk
+const totalTk = document.getElementById('total-tk');
+
 //✨ left category
 const loadCategory = () => {
   fetch('https://openapi.programming-hero.com/api/categories')
@@ -43,13 +50,9 @@ leftCategories.addEventListener('click', (e) => {
   });
   //  add
   if (e.target.localName === 'li') {
+    showLoading();
     e.target.classList.add('bg-green-600', 'text-white');
     loadPlantsByCategories(e.target.id);
-  }
-  console.log(e.target.parentNode.parentNode.children[1]);
-  // 🍁 modal call
-  if (e.target.innerText === 'id') {
-    handlePlantsModal(e);
   }
 });
 
@@ -85,7 +88,6 @@ const showPlantsByCategories = (plants) => {
         </div>
     `;
   });
-  // handlePlantsModal(e);
 };
 
 //💥 all trees
@@ -104,18 +106,21 @@ const loadPlants = () => {
 
 //💥 show all trees
 const showPlants = (plantsData) => {
+  // console.log(plantsData);
+  allPlants.innerHTML = '';
   plantsData.forEach((plan) => {
+    // console.log(plan);
     allPlants.innerHTML += `
-        <div class=" bg-white p-3 max-h-fit shadow-lg rounded-xl">
+        <div id="${plan.id}" class=" bg-white p-3 h-full shadow-lg rounded-xl">
             <img class="bg-gray-200 rounded-lg w-full h-52 object-cover" src="${plan.image}" alt="">
-            <h4 class="text-xl font-semibold my-3">${plan.name}</h4>
+            <h4 id="${plan.id}" onclick="handlePlantsModal(event)" class="text-xl font-semibold my-3">${plan.name}</h4>
             <p>${plan.description}</p>
             <div class="flex justify-between items-center my-3">
                 <button
                     class="p-1 px-3 rounded-full bg-[#dcfce7] text-green-700 font-medium cursor-pointer">${plan.category}</button>
                 <h6 class="font-semibold"><span>৳</span>${plan.price}</h6>
             </div>
-            <button class="p-2 px-5 rounded-full w-full bg-[#15803d] text-white font-medium cursor-pointer">Add
+            <button id="${plan.id}" class="p-2 px-5 rounded-full w-full bg-[#15803d] text-white font-medium cursor-pointer">Add
                 to Cart</button>
         </div>
     `;
@@ -132,15 +137,15 @@ const handlePlantsModal = (e) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data.plants);
-      showDetailsNews(data.plants);
+      showDetailsPlants(data.plants);
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-// Modal এ plants details দেখানো
-const showDetailsNews = (plants) => {
+//🍁 Modal --> plants details show
+const showDetailsPlants = (plants) => {
   console.log(plants);
   plantsModal.showModal();
   modalContainer.innerHTML = `
@@ -152,6 +157,66 @@ const showDetailsNews = (plants) => {
   `;
 };
 
-// handlePlantsModal();
-loadPlants();
+//🧩 right cards addEventListener
+middlePlants.addEventListener('click', (e) => {
+  // console.log(e.target);
+  // console.log(e.target.innerText);
+
+  if (e.target.innerText === 'Add to Cart') {
+    handleCard(e);
+  }
+});
+
+//🧩 right cards function
+const handleCard = (e) => {
+  const title = e.target.parentNode.children[1].innerText;
+  const price = e.target.parentNode.children[3].children[1].innerText;
+  const id = e.target.parentNode.id;
+  console.log(price);
+  cardAdd.push({
+    title: title,
+    price: price,
+    id: id,
+  });
+  // console.log(cardAdd);
+  showCard(cardAdd);
+};
+
+//🧩 right cards show
+const showCard = (cardAdd) => {
+  console.log(cardAdd);
+  cardContainer.innerHTML = '';
+  cardAdd.forEach((card) => {
+    cardContainer.innerHTML += `
+        <div>
+            <div class="bg-[#f0fdf4] p-2 m-3 rounded-md flex justify-between items-center">
+                <div>
+                    <h5 class="font-semibold">${card.title}</h5>
+                    <p class="text-gray-500">${card.price}</p>
+                </div>
+                <div onclick='handleRemoveCard("${card.id}")' id="remove-card" class="cursor-pointer">❌</div>
+            </div>
+        </div>
+    `;
+  });
+};
+
+//🧩 right cards function for remove card
+const handleRemoveCard = (cardId) => {
+  const filteredCard = cardAdd.filter((card) => card.id !== cardId);
+  console.log(cardId);
+  console.log(filteredCard);
+  cardAdd = filteredCard;
+  // last call
+  showCard(cardAdd);
+};
+
+//🔃 show loading... function
+const showLoading = () => {
+  middlePlants.innerHTML = `
+  <span class="loading loading-bars loading-xl mt-7 ml-15"></span>
+`;
+};
+
 loadCategory();
+loadPlants();

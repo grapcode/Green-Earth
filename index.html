@@ -90,6 +90,10 @@
             <div id="middlePlants" class=" md:col-span-5 grid md:grid-cols-3 gap-5  ">
                 <div id="allPlants"
                     class=" md:col-span-5 grid md:grid-cols-3 gap-5 p-2 rounded-md my-2 cursor-pointer list-none">
+
+                    <!--🔃 loading...  -->
+                    <span class="loading loading-bars loading-xl mt-7 ml-15"></span>
+
                 </div>
                 <!-- card -->
                 <!-- <div class=" border bg-white max-h-fit p-3 ">
@@ -110,8 +114,28 @@
             </div>
 
             <!--✨ right sidebar -->
-            <div class="bg-gray-400  h-56 col-span-1 grid grid-cols-1">
-                <h4 class="text-xl font-semibold mb-3">Your Cart</h4>
+            <div id="right-cards" class="bg-white rounded-lg  ">
+                <h4 class="text-xl font-semibold my-3 ml-3">Your Cart</h4>
+                <!-- card design  -->
+                <div id="card-container" class="">
+
+                    <!-- card for js  -->
+                    <!-- <div>
+                        <div class="bg-[#f0fdf4] p-2 m-3 rounded-md flex justify-between items-center">
+                            <div>
+                                <h5 class="font-semibold">Name</h5>
+                                <p class="text-gray-500"><span>৳</span>500</p>
+                            </div>
+                            <div id="remove-card" class="cursor-pointer">❌</div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <!--✨ total tk -->
+                <div class="border-t-2 border-gray-200 flex justify-between items-center p-2">
+                    <p>Total:</p>
+                    <p id="total-tk"><span>৳</span>0</p>
+                </div>
             </div>
         </section>
 
