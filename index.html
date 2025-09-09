@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="overflow-x-hidden md:overflow-x-auto" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -51,6 +51,7 @@
         <!--📍 banner section  -->
         <section class="banner bg-[#cff0dc] ">
             <div class="px-3 flex flex-col lg:flex-row justify-between items-center">
+                <!-- lg img  -->
                 <img class="mb-5 lg:mb-0 hidden lg:block" src="./assets/hero-leaf1.png" alt="">
                 <div class="banner-container space-y-4 text-center mx-auto  ">
                     <h1 class="text-5xl font-bold mt-10 lg:mt-0">Plant a Tree, Grow a Future</h1>
@@ -59,9 +60,11 @@
                     <button class="p-2 px-5 rounded-full bg-[#facc15] text-green-700 font-medium cursor-pointer">Get
                         Involved</button>
                 </div>
+                <img class="mb-5 lg:mb-0 hidden lg:block" src="./assets/hero-leaf2.png" alt="">
                 <div class="flex">
+                    <!-- for md: img  -->
                     <img class="h-36 md:h-60 object-contain block lg:hidden" src="./assets/hero-leaf1.png" alt="">
-                    <img class="h-36 md:h-60 lg:h-auto object-contain" src="./assets/hero-leaf2.png" alt="">
+                    <img class="h-36 md:h-60 object-contain block lg:hidden" src="./assets/hero-leaf2.png" alt="">
                 </div>
             </div>
         </section>
