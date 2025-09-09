@@ -167,7 +167,7 @@ const handleCard = (e) => {
   cardAdd.push({
     title: title,
     price: price,
-    id: id,
+    id: id + '-' + Date.now(), // ✅ unique id বানানো
   });
 
   // 🎯 get total price
