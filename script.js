@@ -35,7 +35,6 @@ const loadCategory = () => {
 //✨ show left categories
 const showCategory = (allCategories) => {
   allCategories.forEach((cat) => {
-    // console.log(cat);
     leftCategories.innerHTML += `
         <li id="${cat.id}" class="hover:bg-green-200  p-2 rounded-md my-2 cursor-pointer list-none">${cat.category_name}</li>
     `;
@@ -73,7 +72,6 @@ const loadPlantsByCategories = (id) => {
 const showPlantsByCategories = (plants) => {
   middlePlants.innerHTML = '';
   plants.forEach((plant) => {
-    // console.log(plant);
     middlePlants.innerHTML += `
         <div id="${plant.id}" class=" bg-white p-3 max-h-fit shadow-lg rounded-xl">
             <img class="bg-gray-200 rounded-lg w-full h-52 object-cover" src="${plant.image}" alt="">
@@ -96,7 +94,6 @@ const loadPlants = () => {
   fetch('https://openapi.programming-hero.com/api/plants')
     .then((res) => res.json())
     .then((data) => {
-      //   console.log(data);
       const plantsData = data.plants;
       showPlants(plantsData);
     })
@@ -107,10 +104,8 @@ const loadPlants = () => {
 
 //💥 show all trees
 const showPlants = (plantsData) => {
-  // console.log(plantsData);
   allPlants.innerHTML = '';
   plantsData.forEach((plan) => {
-    // console.log(plan);
     allPlants.innerHTML += `
         <div id="${plan.id}" class=" bg-white p-3 h-full shadow-lg rounded-xl">
             <img class="bg-gray-200 rounded-lg w-full h-52 object-cover" src="${plan.image}" alt="">
@@ -132,12 +127,10 @@ const showPlants = (plantsData) => {
 
 const handlePlantsModal = (e) => {
   const id = e.target.parentNode.id;
-  // console.log(id);
-
   fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.plants);
+      // console.log(data.plants);
       showDetailsPlants(data.plants);
     })
     .catch((err) => {
@@ -147,7 +140,6 @@ const handlePlantsModal = (e) => {
 
 //🍁 Modal --> plants details show
 const showDetailsPlants = (plants) => {
-  console.log(plants);
   plantsModal.showModal();
   modalContainer.innerHTML = `
     <h1 class="text-xl font-semibold mb-3">${plants.name}</h1>
@@ -160,7 +152,6 @@ const showDetailsPlants = (plants) => {
 
 //🧩 right cards addEventListener
 middlePlants.addEventListener('click', (e) => {
-  // console.log(e.target);
   // console.log(e.target.innerText);
 
   if (e.target.innerText === 'Add to Cart') {
