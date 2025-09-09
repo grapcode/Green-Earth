@@ -74,7 +74,6 @@ const showPlantsByCategories = (plants) => {
   plants.forEach((plant) => {
     middlePlants.innerHTML += `
         <div id="${plant.id}" class="flex flex-col justify-between bg-white p-3 h-fit shadow-lg rounded-xl">
-            <div>
                   <img class="bg-gray-200 rounded-lg w-full h-52 object-cover" src="${plant.image}" alt="">
                   <h4 onclick="handlePlantsModal(event)" class="text-xl font-semibold my-3">${plant.name}</h4>
                   <p>${plant.description}</p>
@@ -83,7 +82,6 @@ const showPlantsByCategories = (plants) => {
                           class="p-1 px-3 rounded-full bg-[#dcfce7] text-green-700 font-medium cursor-pointer">${plant.category}</button>
                       <h6 class="font-semibold"><span>৳</span>${plant.price}</h6>
                   </div>
-            </div>
             <button class="p-2 px-5 rounded-full w-full bg-[#15803d] text-white font-medium cursor-pointer">Add
                 to Cart</button>
         </div>
@@ -110,7 +108,6 @@ const showPlants = (plantsData) => {
   plantsData.forEach((plan) => {
     allPlants.innerHTML += `
         <div id="${plan.id}" class="flex flex-col justify-between bg-white p-3 h-full shadow-lg rounded-xl">
-           <div>
                 <img class="bg-gray-200 rounded-lg w-full h-52 object-cover" src="${plan.image}" alt="">
                 <h4 id="${plan.id}" onclick="handlePlantsModal(event)" class="text-xl font-semibold my-3">${plan.name}</h4>
                 <p>${plan.description}</p>
@@ -119,7 +116,6 @@ const showPlants = (plantsData) => {
                         class="p-1 px-3 rounded-full bg-[#dcfce7] text-green-700 font-medium cursor-pointer">${plan.category}</button>
                     <h6 class="font-semibold"><span>৳</span>${plan.price}</h6>
                 </div>
-           </div>
             <button id="${plan.id}" class="p-2 px-5 rounded-full w-full bg-[#15803d] text-white font-medium cursor-pointer">Add
                 to Cart</button>
         </div>
@@ -171,7 +167,7 @@ const handleCard = (e) => {
   cardAdd.push({
     title: title,
     price: price,
-    id: id + '-' + Date.now(), // ✅ unique id বানানো
+    id: id + '-' + Date.now(), // unique id বানানো
   });
 
   // 🎯 get total price
